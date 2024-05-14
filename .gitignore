@@ -1,0 +1,28 @@
+# Comentarios comienzan con #
+# Ignorar archivos específicos
+secrets.txt
+
+# Ignorar archivos con una extensión específica en un directorio específico
+/path/to/directory/*.log
+
+# Ignorar un directorio completo
+/node_modules/
+
+# Ignorar archivos generados automáticamente por IDEs o editores de texto
+.vscode/
+.idea/
+
+# Ignorar archivos de configuración locales
+.env
+
+# Ignorar archivos de registro o archivos temporales
+*.log
+*.tmp
+
+# Ignorar archivos de compilación o carpetas generadas por compilación
+/dist/
+/build/
+
+# Ignorar archivos de dependencias o módulos
+package-lock.json
+yarn.lock

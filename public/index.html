@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consumir API</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      .container {
+  width: 240px;
+  height: 294px;
+  perspective: 900px;
+}
+
+.card {
+  height: 100%;
+  width: 100%;
+  background-color: aliceblue;
+  position: relative;
+  transition: transform 1500ms;
+  transform-style: preserve-3d;
+  border-radius: 2rem;
+}
+
+.container:hover > .card {
+  cursor: pointer;
+  transform: rotateY(180deg) rotateZ(180deg);
+}
+
+.front, .back {
+  height: 100%;
+  width: 100%;
+  border-radius: 2rem;
+  position: absolute;
+  box-shadow: 0 0 10px 2px rgba(50, 50, 50, 2.5);
+  backface-visibility: hidden;
+  color: aliceblue;
+  background: linear-gradient(-135deg, 
+#F80A4A, #0AA4F8);
+}
+
+.front, .back {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.back {
+  transform: rotateY(180deg) rotateZ(180deg);
+}
+
+.back-heading, .front-heading {
+  font-size: 28px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+}
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+      h1 {
+        margin-bottom: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .horizontal-line {
+      height: 3px; /* Altura de la línea */
+      background-image: linear-gradient(to right, red 50%, blue 50%); /* Gradiente lineal */
+      background-size: 100% 100%; /* Tamaño del gradiente */
+      background-repeat: no-repeat; /* No repetir */
+    }
+    </style>
+  </head>
+  <body>
+    <h1>Consumir APIs</h1>
+    <button id="botonDescargar">Mostrar Datos en Tabla</button>
+    <button id="btnExcel">Exportar Excel</button>
+    <button id="btnEnviar">enviar</button>
+    <input type="file" id="archivoInput" />
+    <div id="tablaContainer"></div>
+    <div id="loader" style="display: none">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+    </div>
+    <div id="tablaComisiones"></div>
+    <div>
+      <h1>POINT TECHNOLOGY</h1>
+    </div>
+    <div class="body">
+      <a class="card human-resources" href="#">
+        <div class="overlay"></div>
+        <div class="circle">
+          <svg
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns="http://www.w3.org/2000/svg"
+            version="1.1"
+            viewBox="1855 26 66 77"
+            height="77px"
+            width="66px"
+          >
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g
+              transform="translate(1855.000000, 26.000000)"
+              fill-rule="evenodd"
+              fill="none"
+              stroke-width="1"
+              stroke="none"
+              id="Page-1"
+            >
+              <path
+                fill="#AFCEFF"
+                id="Fill-8"
+                d="M4.28872448,42.7464904 C4.28872448,39.3309774 5.4159227,33.7621426 6.40576697,30.4912557 C10.5920767,32.1098991 14.3021264,35.1207513 18.69596,35.1207513 C30.993618,35.1207513 42.5761396,28.7162991 49.9992251,17.9014817 C56.8027248,23.8881252 60.8188351,33.0463165 60.8188351,42.7464904 C60.8188351,60.817447 47.6104607,76.6693426 32.5537798,76.6693426 C17.4970989,76.6693426 4.28872448,60.817447 4.28872448,42.7464904"
+              ></path>
+              <path
+                fill="#3B6CB7"
+                id="Fill-10"
+                d="M64.3368879,31.1832696 L62.8424171,46.6027478 L60.6432609,46.7824348 L59.8340669,34.6791304 L47.6573402,25.3339478 C44.2906753,34.068487 34.3459503,40.2903304 24.4684093,40.2903304 C17.7559812,40.2903304 10.046244,37.4168 5.80469412,32.8004522 L5.80469412,34.6791304 L5.80469412,46.6027478 L4.28932167,46.6027478 L1.30187314,27.8802435 C1.30187314,20.9790957 3.52342407,15.5432 7.27229127,11.3578087 C13.132229,4.79558261 21.8124018,0.0492173913 30.5672235,0.342852174 C37.4603019,0.569286957 42.6678084,2.72991304 50.8299179,0.342852174 C51.4629405,1.44434783 51.8615656,3.00455652 51.5868577,5.22507826 C51.4629405,6.88316522 51.2106273,7.52302609 50.8299179,8.45067826 C58.685967,14.1977391 64.3368879,20.7073739 64.3368879,31.1832696"
+              ></path>
+              <path
+                fill="#568ADC"
+                id="Fill-13"
+                d="M58.9405197,54.5582052 C62.0742801,54.8270052 65.3603242,52.60064 65.6350321,49.5386574 C65.772386,48.009127 65.2617876,46.5570226 64.3182257,45.4584487 C63.3761567,44.3613357 62.0205329,43.6162922 60.4529062,43.4818922 L58.9405197,54.5582052 Z"
+              ></path>
+              <path
+                fill="#568ADC"
+                id="Fill-15"
+                d="M6.32350389,54.675367 C3.18227865,54.8492104 0.484467804,52.4957496 0.306803449,49.4264626 C0.217224782,47.8925496 0.775598471,46.4579757 1.75200594,45.3886191 C2.7284134,44.3192626 4.10792487,43.6165843 5.67853749,43.530393 L6.32350389,54.675367 Z"
+              ></path>
+            </g>
+          </svg>
+        </div>
+        <p>Estimad@s.</p>
+        <p>Se adjunta el resumen de comisiones y ventas a la fecha.</p>
+      </a>
+    </div>
+    <div class="horizontal-line"></div>
+    <div class="container">
+      <div class="card">
+        <div class="front">
+          <p class="front-heading">POINT TECHNOLOGY</p>
+          <p>Estimad@s.</p>
+        </div>
+        <div class="back">
+          <p class="back-heading">Se adjunta los</p>
+          <p>Follow Me For More</p>
+        </div>
+      </div>
+    </div>
+    
+    <script src="../src/script/functionApi.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/node-fetch"></script>
+  </body>
+</html>
